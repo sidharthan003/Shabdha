@@ -1,16 +1,37 @@
 
 # Shabdha
 
-Shabdha is a Python-based project for gesture recognition and keypoint extraction from videos, featuring pose analysis, gesture labeling, and audio transcription. It is designed for building gesture datasets and training machine learning models for sign/gesture recognition.
+Shabdha is an end-to-end pipeline for converting courtroom transcripts into Indian Sign Language (ISL) or other target sign languages, with animation and delivery to screens or devices, and human-in-the-loop checks for legal safety.
+
+---
+
+## Project Flow
+
+1. **Convert cleaned court transcripts**
+  - Input: Cleaned text transcripts from court proceedings.
+2. **Linguistic normalization**
+  - Normalize and preprocess text for translation.
+3. **ISL/Target-sign translation**
+  - Translate normalized text into ISL or other sign language notation.
+4. **Notation/Animation**
+  - Convert sign notation into animation data (keypoints, skeletons).
+  - Use MediaPipe and OpenCV to extract and process gesture keypoints.
+5. **Avatar/Video/Subtitles Generation**
+  - Render animated avatars or videos.
+  - Generate subtitles (SRT) using Whisper for audio alignment.
+6. **Delivery**
+  - Output to courtroom screens or attendees’ devices.
+7. **Human-in-loop checks**
+  - Legal experts review and approve outputs for legal safety.
 
 ---
 
 ## Features
-- Extracts pose keypoints from gesture videos using MediaPipe Holistic
-- Flattens and saves keypoints to CSV files for each frame
-- Adds gesture labels for supervised learning
-- Transcribes audio to subtitles using OpenAI Whisper
-- Example scripts for each step of the workflow
+- Transcript cleaning and normalization
+- Sign language translation (ISL/target)
+- Keypoint extraction and animation (MediaPipe, OpenCV)
+- Avatar/video/subtitle generation
+- Human-in-the-loop review for legal compliance
 
 ---
 
@@ -29,60 +50,58 @@ Shabdha is a Python-based project for gesture recognition and keypoint extractio
 
 ## Setup
 1. Clone the repository:
-   ```sh
-   git clone https://github.com/sidharthan003/Shabdha.git
-   cd Shabdha
-   ```
+  ```sh
+  git clone https://github.com/sidharthan003/Shabdha.git
+  cd Shabdha
+  ```
 2. (Recommended) Create and activate a virtual environment:
-   ```sh
-   python -m venv shabdha
-   # On Windows:
-   shabdha\Scripts\activate
-   # On Unix/Mac:
-   source shabdha/bin/activate
-   ```
+  ```sh
+  python -m venv shabdha
+  # On Windows:
+  shabdha\Scripts\activate
+  # On Unix/Mac:
+  source shabdha/bin/activate
+  ```
 3. Install dependencies:
-   ```sh
-   pip install opencv-python mediapipe pandas numpy torch openai-whisper nltk pysrt
-   ```
+  ```sh
+  pip install opencv-python mediapipe pandas numpy torch openai-whisper nltk pysrt
+  ```
 
 ---
 
 ## Workflow & Usage
 
-### 1. Extract Keypoints from Video
+### 1. Transcript Processing
+- Place your cleaned transcript in the project directory.
+- (Future) Use provided scripts for normalization and translation.
 
-- Place your gesture video (e.g., `sample_gesture.mp4` or `hello_gesture.mp4`) in the project directory.
-- Run the extraction script:
+### 2. Keypoint Extraction & Animation
+- Place gesture/sign videos in the project directory.
+- Run extraction scripts:
   ```sh
   python CODES/gesture.py
-  # or for hello gesture
   python CODES/hello_capture.py
   ```
-- This will generate a CSV file (e.g., `gesture_keypoints.csv` or `hello_keypoints.csv`) with pose keypoints for each frame.
+- This generates CSVs with pose keypoints for each frame.
 
-### 2. Label Keypoints for Training
-
-- Add a label to each frame or sequence for supervised learning:
+### 3. Labeling & Training Data Preparation
+- Add gesture labels for supervised learning:
   ```sh
   python CODES/labels.py
   ```
-- This will create a labeled CSV (e.g., `gesture_keypoints_labeled.csv`).
 
-### 3. Transcribe Audio to Subtitles
-
-- To align gestures with speech, transcribe audio using Whisper:
+### 4. Audio Transcription & Subtitle Generation
+- Transcribe audio and generate SRT subtitles:
   ```sh
   python CODES/stage1_transcribe_segment.py
   ```
-- This will generate an SRT subtitle file (e.g., `output_transcript.srt`).
 
-### 4. (Optional) Test Whisper Model & CUDA
+### 5. Avatar/Video/Subtitles Delivery
+- Render avatars or videos from animation data (future work).
+- Deliver outputs to screens or devices.
 
-- Check CUDA and Whisper setup:
-  ```sh
-  python CODES/whisper_test.py
-  ```
+### 6. Human-in-the-loop Review
+- Legal experts review outputs for compliance and safety.
 
 ---
 
@@ -100,6 +119,7 @@ Shabdha is a Python-based project for gesture recognition and keypoint extractio
 - For best results, use clear, well-lit videos with visible gestures.
 - You can segment gestures using subtitles or manual annotation if your video contains multiple gestures.
 - Use the labeled CSVs to train gesture recognition models (e.g., LSTM, CNN, Transformer).
+- Future work: Integrate full pipeline for transcript-to-animation and delivery.
 
 ---
 
