@@ -1,7 +1,7 @@
 
 # Shabdha
 
-Shabdha is a Python-based toolkit for gesture recognition and keypoint extraction from videos, featuring pose analysis, gesture labeling, and audio transcription. It is designed for building gesture datasets and training machine learning models for sign/gesture recognition.
+Shabdha is a Python-based project for gesture recognition and keypoint extraction from videos, featuring pose analysis, gesture labeling, and audio transcription. It is designed for building gesture datasets and training machine learning models for sign/gesture recognition.
 
 ---
 
