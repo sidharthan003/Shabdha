@@ -1,0 +1,1 @@
+Convert cleaned court transcripts → linguistic normalization → ISL/target-sign translation → notation/animation → avatar/video/subtitles — delivered on courtroom screens or attendees’ devices, with human-in-loop checks for legal safety.
