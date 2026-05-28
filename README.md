@@ -64,7 +64,23 @@ Shabdha is an end-to-end pipeline for converting courtroom transcripts into Indi
   ```
 3. Install dependencies:
   ```sh
-  pip install opencv-python mediapipe pandas numpy torch openai-whisper nltk pysrt
+  pip install -r requirements.txt
+  ```
+
+---
+
+## Quickstart
+1. Extract keypoints from a video:
+  ```sh
+  python CODES/gesture.py
+  ```
+2. Prepare fixed-length sequences for training:
+  ```sh
+  python CODES/prepare_sequences.py --input CSV/gesture_keypoints.csv --output CSV/sequences.npz --seq-len 30 --stride 10
+  ```
+3. Visualize a frame as a 3D skeleton:
+  ```sh
+  python CODES/visualize_skeleton.py --input CSV/gesture_keypoints.csv --frame 0 --save CSV/pose_frame0.png
   ```
 
 ---
@@ -109,6 +125,9 @@ Shabdha is an end-to-end pipeline for converting courtroom transcripts into Indi
 - `CODES/gesture.py`: Extracts pose keypoints from a video and saves to CSV.
 - `CODES/hello_capture.py`: Specialized for "hello" gesture video.
 - `CODES/labels.py`: Adds a label column to a keypoints CSV.
+- `CODES/prepare_sequences.py`: Builds fixed-length sequences for model training.
+- `CODES/visualize_skeleton.py`: Renders a 3D pose skeleton from CSV keypoints.
+- `CODES/demo_run.py`: Demo runner that builds sequences and saves a plot.
 - `CODES/stage1_transcribe_segment.py`: Transcribes audio and creates SRT subtitles.
 - `CODES/whisper_test.py`: Checks CUDA and Whisper model setup.
 

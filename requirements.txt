@@ -1,0 +1,9 @@
+opencv-python
+mediapipe
+pandas
+numpy
+torch
+openai-whisper
+nltk
+pysrt
+matplotlib
